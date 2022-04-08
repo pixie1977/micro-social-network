@@ -1,0 +1,11 @@
+.roundSquare {
+    border-radius: 10px;
+}
+
+.tooltipItem {
+    cursor: pointer;
+}
+
+.tooltipItem:hover {
+    background-color: gray;
+}

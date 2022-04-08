@@ -1,0 +1,1 @@
+web: java -jar micro-social-app/target/react-and-spring-data-rest-security-0.0.1-SNAPSHOT.jar

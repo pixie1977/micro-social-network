@@ -1,0 +1,11 @@
+.trigger {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.pointer {
+    /*transform: rotate(90deg);*/
+}
