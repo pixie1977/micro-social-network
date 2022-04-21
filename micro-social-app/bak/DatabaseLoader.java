@@ -21,7 +21,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import ru.common.micro.social.data.UserRepository;
+import ru.common.micro.social.dao.UserRepository;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {

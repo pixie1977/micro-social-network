@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import ru.common.micro.social.data.UserRepository;
+import ru.common.micro.social.dao.UserRepository;
 
 @Component
 @RepositoryEventHandler(User.class) // <1>

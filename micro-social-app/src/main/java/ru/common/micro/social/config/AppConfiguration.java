@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableConfigurationProperties
-public class AppConfiguration implements WebMvcConfigurer{
+public class AppConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -25,8 +25,8 @@ public class AppConfiguration implements WebMvcConfigurer{
     }
 
     @Primary
-    @Bean(name ="dataSource")
-    @ConfigurationProperties(prefix="spring.datasource")
+    @Bean(name = "dataSource")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }

@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ru.common.micro.social.data.dto;
+package ru.common.micro.social.dao.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Entity

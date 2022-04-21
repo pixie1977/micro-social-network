@@ -1,10 +1,7 @@
 package ru.common.micro.social.services;
 
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import ru.common.micro.social.data.dto.User;
+import ru.common.micro.social.dao.dto.User;
 
 import java.util.List;
 

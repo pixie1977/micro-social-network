@@ -3,14 +3,11 @@ package ru.common.micro.social.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import ru.common.micro.social.data.UserRepository;
-import ru.common.micro.social.data.dto.User;
+import ru.common.micro.social.dao.UserRepository;
+import ru.common.micro.social.dao.dto.User;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service()

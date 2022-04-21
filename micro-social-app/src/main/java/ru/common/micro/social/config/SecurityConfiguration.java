@@ -9,74 +9,68 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import ru.common.micro.social.services.MsnUserServiceImpl;
-import ru.common.micro.social.data.dto.User;
-
-import java.util.Arrays;
+import ru.common.micro.social.dao.dto.User;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private MsnUserServiceImpl userDetailsService;
+    @Autowired
+    private MsnUserServiceImpl userDetailsService;
 
-	@Autowired
-	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-	}
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.userDetailsService(this.userDetailsService)
-				.passwordEncoder(User.PASSWORD_ENCODER);
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(this.userDetailsService)
+                .passwordEncoder(User.PASSWORD_ENCODER);
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.cors().and()
-			.authorizeRequests()
-				.antMatchers("/built/**", "/main.css","/registration.html","/register").permitAll()
-				.antMatchers("/login/**").permitAll()
-				.antMatchers("/userDetails").permitAll()
-				.antMatchers("/username").permitAll()
-				.antMatchers("/getFriends").permitAll()
-				.antMatchers("/getNotFriends").permitAll()
-				.antMatchers("/updateFriends").permitAll()
-				.antMatchers("/removeFriend").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/login.html")
-				.loginProcessingUrl("/login")
-				.defaultSuccessUrl("/", true)
-				.permitAll()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .cors().and()
+                .authorizeRequests()
+                .antMatchers("/built/**", "/main.css", "/registration.html", "/register").permitAll()
+                .antMatchers("/login/**").permitAll()
+                .antMatchers("/userDetails").permitAll()
+                .antMatchers("/username").permitAll()
+                .antMatchers("/getFriends").permitAll()
+                .antMatchers("/getNotFriends").permitAll()
+                .antMatchers("/updateFriends").permitAll()
+                .antMatchers("/removeFriend").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login.html")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
 //                .usernameParameter("username")
 //                .passwordParameter("password")
-				.and()
-			.httpBasic()
-				.and()
-			.csrf().disable()
-			.logout()
-				.deleteCookies("JSESSIONID")
-				.invalidateHttpSession(true)
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/");
-	}
+                .and()
+                .httpBasic()
+                .and()
+                .csrf().disable()
+                .logout()
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/");
+    }
 
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
