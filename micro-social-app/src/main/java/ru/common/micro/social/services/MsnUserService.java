@@ -16,4 +16,6 @@ public interface MsnUserService extends UserDetailsService {
     int updateFriends(List<String> friendLogins, String userLogin);
 
     int removeFriend(String friendLogin, String login);
+
+    List<User> search(String firstName, String lastName, int maxCount);
 }

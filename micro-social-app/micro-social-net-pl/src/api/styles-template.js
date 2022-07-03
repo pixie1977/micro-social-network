@@ -21,16 +21,16 @@ export const baseStyles = {
 export const appTheme = createTheme({
     palette: {
         primary: {
-            main: '#556cd6',
+            main: '#54d673',
         },
         secondary: {
-            main: '#19857b',
+            main: '#6d746b',
         },
         error: {
             main: red.A400,
         },
         background: {
-            default: 'white',
+            default: '#8a9889',
         },
     },
 });

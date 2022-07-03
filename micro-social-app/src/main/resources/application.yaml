@@ -3,10 +3,21 @@ spring:
         rest:
             base-path: /api
     datasource:
-        driverClassName: com.mysql.jdbc.Driver
-        username: gen_user
-        password: 19ejl95fk1
-        jdbcUrl: jdbc:mysql://85.193.88.137:3306/default_db
+        master:
+            driverClassName: com.mysql.jdbc.Driver
+            username: root
+            password: pass
+            jdbcUrl: jdbc:mysql://89.223.122.234:6603/testdb
+        slave1:
+            driverClassName: com.mysql.jdbc.Driver
+            username: root
+            password: pass
+            jdbcUrl: jdbc:mysql://89.223.122.234:6603/testdb
+        slave2:
+            driverClassName: com.mysql.jdbc.Driver
+            username: root
+            password: pass
+            jdbcUrl: jdbc:mysql://89.223.125.10:6603/testdb
     logging:
         level:
             org.springframework: INFO

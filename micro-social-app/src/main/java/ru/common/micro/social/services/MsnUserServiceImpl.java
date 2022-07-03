@@ -73,4 +73,10 @@ public class MsnUserServiceImpl implements MsnUserService {
 	public int removeFriend(String friendLogin, String login) {
 		return this.repository.removeFriend(friendLogin, login);
 	}
+
+	@Override
+	public List<User> search(String firstName, String lastName, int maxCount) {
+		List<User> users = this.repository.search(firstName, lastName, maxCount);
+		return users;
+	}
 }
