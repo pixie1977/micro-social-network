@@ -94,7 +94,7 @@ public class UserRepository implements Repository<User, Long> {
                 "FROM USER_TABLE u\n" +
                 "  WHERE u.login NOT IN(\n" +
                 "    SELECT l.loginTo FROM USER_LINK l WHERE l.loginFrom = ?)" +
-                "AND NOT(u.login = ?) LIMIT 1000";
+                "AND NOT(u.login = ?) LIMIT 100";
 
         List<User> users = jdbcTemplateSlave2.query(
                 linksSql, new Object[]{login, login}, new BeanPropertyRowMapper<>(User.class));
