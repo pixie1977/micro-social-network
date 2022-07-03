@@ -5,11 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import ru.common.micro.social.dao.dto.User;
+import ru.common.micro.social.dto.SearchUserRequest;
 import ru.common.micro.social.services.MsnUserServiceImpl;
 
 import java.util.ArrayList;
@@ -93,13 +91,33 @@ public class RestController {
                 .body(count);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/search")
+    public ResponseEntity<List<User>> search(@RequestBody SearchUserRequest rq) {
+        List<User> users = userService.search(rq.getFirstName(), rq.getLastName(), rq.getMaxCount());
+
+        return ResponseEntity.ok()
+                .body(users);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchGet(@RequestParam String firstName,
+                                                @RequestParam String lastName,
+                                                @RequestParam Integer maxCount) {
+
+        List<User> users = userService.search(firstName, lastName, maxCount);
+
+        return ResponseEntity.ok()
+                .body(users);
+    }
+
     private String getCurrentUserLogin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String login;
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             login = authentication.getName();
         } else {
-            //login = "oliver"; //TODO:: remove!
             throw new IllegalArgumentException();
         }
         return login;

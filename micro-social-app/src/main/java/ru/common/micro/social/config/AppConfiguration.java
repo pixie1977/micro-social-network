@@ -25,10 +25,39 @@ public class AppConfiguration implements WebMvcConfigurer {
     }
 
     @Primary
-    @Bean(name = "dataSource")
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
+    @Bean(name = "dataSourceMaster")
+    @ConfigurationProperties(prefix = "spring.datasource.master")
+    public DataSource dataSourceMaster() {
         return DataSourceBuilder.create().build();
+    }
+
+    @Primary
+    @Bean(name = "dataSourceSlave1")
+    @ConfigurationProperties(prefix = "spring.datasource.slave1")
+    public DataSource dataSourceSlave1() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Primary
+    @Bean(name = "dataSourceSlave2")
+    @ConfigurationProperties(prefix = "spring.datasource.slave2")
+    public DataSource dataSourceSlave2() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplateMaster(@Qualifier("dataSourceMaster") DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplateSlave1(@Qualifier("dataSourceSlave1") DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplateSlave2(@Qualifier("dataSourceSlave2") DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
     }
 
 }

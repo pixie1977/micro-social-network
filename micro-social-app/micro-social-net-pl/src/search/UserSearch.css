@@ -1,0 +1,24 @@
+.userPersonalPage {
+    display: block;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.text {
+    padding: 5px;
+    justify-content: normal;
+    font-size: 20px;
+    color: blue;
+    margin: 1px;
+    width: 250px;
+    border-color: white;
+    border-width: 10px;
+    display: contents;
+    width: 30%;
+    min-width: 50px;
+}
+
+.padded-div {
+    padding-top: 10px;
+}

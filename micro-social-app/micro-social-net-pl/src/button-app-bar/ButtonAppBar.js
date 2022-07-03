@@ -14,7 +14,7 @@ import _ from "lodash";
 
 
 const ButtonAppBar = (props) => {
-    const {classes, userData} = props;
+    const {classes, userData, uiState, setUiState} = props;
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -26,6 +26,24 @@ const ButtonAppBar = (props) => {
                     <Typography variant="h4" color="inherit" className={classes.grow}>
                         {_.get(userData, 'currentUser.firstName')}
                     </Typography>
+
+                    {uiState===1 && <Button
+                        color="inherit"
+                        onClick={() => {
+                            setUiState(0);
+                        }}
+                    >
+                        Анкета
+                    </Button> }
+
+                    {uiState===0 && <Button
+                        color="inherit"
+                        onClick={() => {
+                            setUiState(1);
+                        }}
+                    >
+                        Поиск
+                    </Button> }
 
                     <Button
                         color="inherit"

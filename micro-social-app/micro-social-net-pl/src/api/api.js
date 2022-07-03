@@ -1,12 +1,13 @@
 import axios from "axios";
 
-//const PREFIX = "http://localhost:8080/"
-const PREFIX = window.location.href
+const PREFIX = "http://localhost:8080/"
+//const PREFIX = window.location.href
 const USER_SERVICE_URL = PREFIX+"userDetails"
 const GET_FRIENDS_URL = PREFIX+"getFriends"
 const GET_NOT_FRIENDS_URL = PREFIX+"getNotFriends"
 const UPDATE_FRIENDS_URL = PREFIX+"updateFriends"
 const REMOVE_FRIENDS_URL = PREFIX+"removeFriend"
+const SEARCH_USERS_URL = PREFIX+"search"
 
 const headers = {
     'Acccess-Allow-Credential': 'origin',
@@ -74,5 +75,21 @@ export const removeFriend = async (rqData, callback) => {
         callback();
     } catch (e) {
         console.log(e);
+    }
+};
+
+export const searchUsers = async (data, rqData, setDataHndler) => {
+    try {
+        setDataHndler({...data, isFetching: true})
+        const searchParams = {
+            ...params,
+            ...rqData,
+            maxCount: 100
+        }
+        const response = await axios.get(SEARCH_USERS_URL, searchParams);
+        setDataHndler({...data, users: response.data, isFetching: false});
+    } catch (e) {
+        console.log(e);
+        setDataHndler({...data, isFetching: false});
     }
 };
