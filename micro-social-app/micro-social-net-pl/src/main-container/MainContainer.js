@@ -9,6 +9,7 @@ import {fetchUserData} from "../api/api";
 import {appTheme, baseStyles} from "../api/styles-template";
 import {UserPersonalPage} from "../user-personal-page/UserPersonalpage";
 import {UserSearch} from "../search/UserSearch";
+import {HotNewsWebsocket} from "../hot-news/HotNewsWebsocket";
 
 const MainContainerComponent = (props) => {
     let [userData, setUserData] = useState({currentUser: {}, users: [], isFetching: false});
@@ -21,6 +22,7 @@ const MainContainerComponent = (props) => {
                 <TopStyledBar userData={userData} uiState={uiState} setUiState={setUiState}/>
                 {uiState===0 && <UserPersonalPage userData={userData}/>}
                 {uiState===1 && <UserSearch/>}
+                <HotNewsWebsocket/>
             </ThemeProvider>
         </div>
     );

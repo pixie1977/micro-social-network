@@ -48,6 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getNotFriends").permitAll()
                 .antMatchers("/updateFriends").permitAll()
                 .antMatchers("/removeFriend").permitAll()
+                .antMatchers("/hot-news-websocket").permitAll()
+                .antMatchers("/hot-news-websocket/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

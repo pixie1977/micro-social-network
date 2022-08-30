@@ -15,7 +15,8 @@ import java.util.stream.Stream;
 
 public class DbDataGnerator {
     public static void main(String[] args) {
-        String connectionUrl = "jdbc:mysql://92.255.76.33:6603/testdb";
+//        String connectionUrl = "jdbc:mysql://92.255.76.33:6603/testdb";
+        String connectionUrl = "jdbc:mysql://89.223.122.234:6603/testdb";
         String sql = "INSERT INTO USER_TABLE(id, login, password, firstName, lastName, city, gender, personal, age, roles)VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         List<String> userList = new ArrayList<>();

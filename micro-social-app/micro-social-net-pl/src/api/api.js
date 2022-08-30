@@ -1,15 +1,17 @@
 import axios from "axios";
 
-const PREFIX = "http://localhost:8080/"
-//const PREFIX = window.location.href
-const USER_SERVICE_URL = PREFIX+"userDetails"
-const GET_FRIENDS_URL = PREFIX+"getFriends"
-const GET_NOT_FRIENDS_URL = PREFIX+"getNotFriends"
-const UPDATE_FRIENDS_URL = PREFIX+"updateFriends"
-const REMOVE_FRIENDS_URL = PREFIX+"removeFriend"
-const SEARCH_USERS_URL = PREFIX+"search"
+//const HTTP_PREFIX = window.location.href
+const HTTP_PREFIX = "http://localhost:8080/"
+const USER_SERVICE_URL = HTTP_PREFIX+"userDetails"
+const GET_FRIENDS_URL = HTTP_PREFIX+"getFriends"
+const GET_NOT_FRIENDS_URL = HTTP_PREFIX+"getNotFriends"
+const UPDATE_FRIENDS_URL = HTTP_PREFIX+"updateFriends"
+const REMOVE_FRIENDS_URL = HTTP_PREFIX+"removeFriend"
+const SEARCH_USERS_URL = HTTP_PREFIX+"search"
 
-const headers = {
+const GET_HOT_NEWS_WS_URL = HTTP_PREFIX+"hot-news-websocket";
+
+export const defaultHeaders = {
     'Acccess-Allow-Credential': 'origin',
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'Application/json',
@@ -18,11 +20,15 @@ const headers = {
 
 const params = {
     mode: 'no-cors',
-    headers: headers,
+    headers: defaultHeaders,
     origin: "*",
     methods: "GET,PUT,POST,DELETE, OPTIONS",
     withCredentials: false,
     credentials: 'same-origin',
+}
+
+export const getWsHotNewsUrl = () => {
+    return GET_HOT_NEWS_WS_URL;
 }
 
 export const fetchUserData = async (data, setDataHndler) => {
